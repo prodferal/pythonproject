@@ -1,4 +1,6 @@
 # Använderens input/output
+# Lägger till kommentarer så det blir mindre förvirrande i början
+
 import meny as meny
 import filselektion as filselektion
 
@@ -12,6 +14,6 @@ insights.
     user_inp = int(input('Enter your choice (1-7): '))
 
     if user_inp == 1:
-        filselektion.fileselection()
+        filselektion.file_selection_menu()
 
 main()

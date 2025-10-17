@@ -1,4 +1,5 @@
 # Skapa menyn för användaren
+# Kanske fett onödig men då slipper man se det i main
 
 def meny():
     print('''
