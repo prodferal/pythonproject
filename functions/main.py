@@ -15,5 +15,18 @@ insights.
 
     if user_inp == 1:
         filselektion.file_selection_menu()
-
+    if user_inp == 2:
+        return 'Yuh chief beef'
+    if user_inp == 3:
+        return 'Yuh chief beef'
+    if user_inp == 4:
+        return 'Yuh chief beef'
+    if user_inp == 5:
+        return 'Yuh chief beef'
+    if user_inp == 6:
+        return 'Yuh chief beef'
+    if user_inp == 7:
+        print('Thank you for using text analyzer!')
+        return
+1
 main()

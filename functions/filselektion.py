@@ -3,22 +3,25 @@
 import os
 
 
-def chosen_file(user_inp, file_name):
+def chosen_file(file_name):
     # Funktion som väljer och analyserar vald fil
-    if user_inp == 2:
-        print(f'Analysing "{file_name}"...')
-        input = open("txtfiles/testtxt.txt", "r")
 
-        # Kolla ifall fil existerar (temporär)
-        if os.path.isfile("txtfiles/testtxt.txt"):
-            print("testtxt.txt exists")
-        
+    print(f'Analysing "{file_name}"...')
+    with open(f'txtfiles/{file_name}', 'r', encoding='utf-8') as file:
+
+        # Kolla ifall fil existerar (temporär för test)
+        if os.path.isfile(f"txtfiles/{file_name}"):
+            print(f"{file_name} exists")
+            
         countLines = 0
-        for line in input:
+
+        for line in file:
             countLines += 1
         print(f'Analysis complete! Processed {countLines} lines.')
 
-        input.close()
+    return countLines
+    
+    input.close()
 
 
 
@@ -37,5 +40,6 @@ Available text files:
     # Fungerar bara med nummer just nu
     user_file_selection = int(input('Enter filename or number from list above: '))
 
-    chosen_file(user_file_selection, txt_files[user_file_selection - 1])
+    chosen_file(txt_files[user_file_selection - 1])
+    print(f'Successfully loaded and analysed "{txt_files[user_file_selection - 1]}"')
     
