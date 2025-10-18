@@ -28,5 +28,5 @@ insights.
     if user_inp == 7:
         print('Thank you for using text analyzer!')
         return
-1
+
 main()
