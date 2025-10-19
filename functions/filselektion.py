@@ -15,7 +15,8 @@ def chosen_file(file_name):
         for line in file:
             countLines += 1
 
-            #for word in Dictionaries.letter_dict.items():
+        #for line 
+        #for word in Dictionaries.letter_dict.items():
                 
 
         print(f'Analysis complete! Processed {countLines} lines.')
