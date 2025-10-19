@@ -1,6 +1,7 @@
 # Filselektion, och analysering av vald fil
 
 import os
+import 
 
 
 def chosen_file(file_name):
@@ -13,6 +14,7 @@ def chosen_file(file_name):
 
         for line in file:
             countLines += 1
+        
         print(f'Analysis complete! Processed {countLines} lines.')
 
     return countLines
