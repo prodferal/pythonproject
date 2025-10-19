@@ -3,7 +3,6 @@
 import os
 import Dictionaries
 
-
 def chosen_file(file_name):
     # Funktion som analyserar vald fil
 
@@ -14,12 +13,28 @@ def chosen_file(file_name):
 
         for line in file:
             countLines += 1
+            
+            file_letter_list = list(line)
 
-        #for line 
-        #for word in Dictionaries.letter_dict.items():
+            for i in file_letter_list:
+                for letter, v in Dictionaries.letter_dict.items():
+
+                    if letter == i.lower():
+                        Dictionaries.letter_dict[i.lower()] += 1
+            
+            
+        
+
+
+        #for char in string.punctuation:
+            #text = file.replace(char, '')
+
+
                 
 
         print(f'Analysis complete! Processed {countLines} lines.')
+        #print(Dictionaries.letter_dict)
+
 
     return countLines
     

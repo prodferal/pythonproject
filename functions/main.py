@@ -3,6 +3,7 @@
 
 import meny as meny
 import filselektion as filselektion
+import Dictionaries
 
 def main():
     print('''
@@ -22,7 +23,8 @@ insights.
     if user_inp == 4:
         return 'Yuh chief beef'
     if user_inp == 5:
-        return 'Yuh chief beef'
+        print(Dictionaries.letter_dict)
+            
     if user_inp == 6:
         return 'Yuh chief beef'
     if user_inp == 7:
