@@ -1,7 +1,7 @@
 # Filselektion, och analysering av vald fil
 
 import os
-import 
+import Dictionaries
 
 
 def chosen_file(file_name):
@@ -14,7 +14,10 @@ def chosen_file(file_name):
 
         for line in file:
             countLines += 1
-        
+
+            #for word in Dictionaries.letter_dict.items():
+                
+
         print(f'Analysis complete! Processed {countLines} lines.')
 
     return countLines
