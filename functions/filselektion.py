@@ -26,13 +26,12 @@ def chosen_file(file_name):
     print(f'Analysing "{file_name}"...')
     with open(f'txtfiles/{file_name}', 'r', encoding='utf-8') as file:
 
-        countLines = 0
-
         for line in file:
-            countLines += 1
+            Dictionaries.count_lines += 1
             processLine(line.lower(), Dictionaries.common_words_dict)
-            file_letter_list = list(line)
+            Dictionaries.chars_with_spaces += len(line)
 
+            file_letter_list = list(line)
             for i in file_letter_list:
                 for letter, v in Dictionaries.letter_dict.items():
 
@@ -45,16 +44,10 @@ def chosen_file(file_name):
 
         #for char in string.punctuation:
             #text = file.replace(char, '')
-
-
                 
 
-        print(f'Analysis complete! Processed {countLines} lines.')
+        print(f'Analysis complete! Processed {Dictionaries.count_lines} lines.')
         #print(Dictionaries.letter_dict)
-
-
-    return countLines
-    
 
 
 def handling_input(txt_files):

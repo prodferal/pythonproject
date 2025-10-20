@@ -2,6 +2,14 @@
 
 current_file = 'No file loaded'
 
+count_lines = 0
+
+chars_with_spaces = 0
+
+chars_no_spaces = 0
+
+all_sentences = []
+
 letter_dict = {
     'a' : 0, 'b' : 0, 'c' : 0, 'd' : 0, 'e' : 0, 'f' : 0, 
     'g' : 0, 'h' : 0, 'i' : 0, 'j' : 0, 'k' : 0, 'l' : 0, 
