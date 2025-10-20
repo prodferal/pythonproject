@@ -19,20 +19,31 @@ def processLine(line, common_words_dict):
         else:
             common_words_dict[word] = 1 # Add an item to the dictionary
 
+def paragraphChecker(line, in_paragraph):
+    if line.strip() != '':
+        if in_paragraph == False:
+            Dictionaries.count_paragraph += 1
+        in_paragraph = True
+    else:
+        in_paragraph = False  
+
+    return in_paragraph
 
 def chosen_file(file_name):
     # Funktion som analyserar vald fil
 
     print(f'Analysing "{file_name}"...')
     with open(f'txtfiles/{file_name}', 'r', encoding='utf-8') as file:
+        
+        in_paragraph = False
 
         for line in file:
             Dictionaries.count_lines += 1
             processLine(line.lower(), Dictionaries.common_words_dict) #common words
             Dictionaries.chars_with_spaces += len(line)
-
-
-
+            Dictionaries.chars_no_spaces += len(line.replace(' ', ''))
+            in_paragraph = paragraphChecker(line, in_paragraph)  
+            
             file_letter_list = list(line) # list of all characters in line
             for i in file_letter_list: #counts all the letters in the text file (letter_dict)
                 for letter, v in Dictionaries.letter_dict.items():
