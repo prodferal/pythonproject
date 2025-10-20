@@ -3,6 +3,23 @@
 import os
 import Dictionaries
 
+def replacePunctuation(line):
+    for ch in line:
+        if ch in "~@#$%^&°()_-+=<>?/,.;:!{}[]|":
+            line = line.replace(ch, ' ')
+    return line
+
+def processLine(line, common_words_dict):
+    line = replacePunctuation(line) # Replace punctuation with space
+    words = line.split() # Get words from each line
+    
+    for word in words:
+        if word in common_words_dict:
+            common_words_dict[word] += 1 # Increase count for word
+        else:
+            common_words_dict[word] = 1 # Add an item to the dictionary
+
+
 def chosen_file(file_name):
     # Funktion som analyserar vald fil
 
@@ -13,7 +30,7 @@ def chosen_file(file_name):
 
         for line in file:
             countLines += 1
-            
+            processLine(line.lower(), Dictionaries.common_words_dict)
             file_letter_list = list(line)
 
             for i in file_letter_list:

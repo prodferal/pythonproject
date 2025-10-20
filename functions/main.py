@@ -4,6 +4,7 @@
 import meny as meny
 import filselektion as filselektion
 import Dictionaries
+import basicstatistik as basikstatistik
 
 def main():
     print('''
@@ -24,7 +25,8 @@ insights.
             continue
 
         if user_inp == 2:
-            return 'Yuh chief beef'
+            basikstatistik.basic_statistics()
+            continue
         if user_inp == 3:
             return 'Yuh chief beef'
         if user_inp == 4:
