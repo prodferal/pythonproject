@@ -64,6 +64,7 @@ def handling_input(txt_files):
             if not os.path.isfile(f'txtfiles/{path_way}'):
                 raise FileNotFoundError(f'File not found.')
             
+            Dictionaries.current_file = path_way
             return path_way
 
         except ValueError as v:
