@@ -40,10 +40,13 @@ def chosen_file(file_name):
                     if letter == i.lower():
                         Dictionaries.letter_dict[i.lower()] += 1
             
-
-            for i in file_letter_list:
+ 
+            for i in file_letter_list: # counting sentences
                 if i == '.' or i == '?' or i == '!':
                     Dictionaries.count_sentences += 1
+            
+            
+
             
             
         
