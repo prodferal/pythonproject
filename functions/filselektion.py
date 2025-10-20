@@ -28,15 +28,22 @@ def chosen_file(file_name):
 
         for line in file:
             Dictionaries.count_lines += 1
-            processLine(line.lower(), Dictionaries.common_words_dict)
+            processLine(line.lower(), Dictionaries.common_words_dict) #common words
             Dictionaries.chars_with_spaces += len(line)
 
-            file_letter_list = list(line)
-            for i in file_letter_list:
+
+
+            file_letter_list = list(line) # list of all characters in line
+            for i in file_letter_list: #counts all the letters in the text file (letter_dict)
                 for letter, v in Dictionaries.letter_dict.items():
 
                     if letter == i.lower():
                         Dictionaries.letter_dict[i.lower()] += 1
+            
+
+            for i in file_letter_list:
+                if i == '.' or i == '?' or i == '!':
+                    Dictionaries.count_sentences += 1
             
             
         
