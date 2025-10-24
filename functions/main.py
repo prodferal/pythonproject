@@ -26,9 +26,14 @@ insights.
 
         if user_inp == 2:
             basikstatistik.basic_statistics()
+            print()
+            enter_pressed = input('Press Enter to continue...')
             continue
         if user_inp == 3:
-            return 'Yuh chief beef'
+            basikstatistik.word_frequency_analysis()
+            print()
+            enter_pressed = input('Press Enter to continue...')
+            continue
         if user_inp == 4:
             return 'Yuh chief beef'
         if user_inp == 5:
