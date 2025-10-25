@@ -21,3 +21,11 @@ letter_dict = {
 }
 
 common_words_dict = {}
+
+#input 4:
+avg_words_per_sentence = 0
+shortest_sentence_length = 0
+longest_sentence_length = 0
+shortest_sentence_text = 0
+longest_sentence_text = 0
+top_five_sentence_lengths = {} 

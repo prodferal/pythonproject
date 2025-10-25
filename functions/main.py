@@ -23,7 +23,7 @@ insights.
         if user_inp == 1:
             filselektion.file_selection_menu()
             continue
-
+        
         if user_inp == 2:
             basikstatistik.basic_statistics()
             print()
@@ -35,7 +35,10 @@ insights.
             enter_pressed = input('Press Enter to continue...')
             continue
         if user_inp == 4:
-            return 'Yuh chief beef'
+            basikstatistik.sentence__analysis()
+            print()
+            enter_pressed = input('Press Enter to continue...')
+            continue
         if user_inp == 5:
             print(Dictionaries.letter_dict)
                 

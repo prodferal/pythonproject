@@ -1,5 +1,6 @@
 # Printa ut statistik för vald textfil
 import Dictionaries
+import re
 
 def basic_statistics(): # när input är 2
     print()
@@ -80,3 +81,66 @@ def word_frequency_analysis(): # när input är 3
     print(f' - Longest word: {len(longest_word)}')
     print(f' - Average word length: {round(avg_word_len, 1)}')
     print(f' - Words appearing only once: {unique_words:,}')
+
+
+
+
+
+
+
+
+
+
+
+# ALLT UNDER ÄR FÖR INPUT 4 -( VI BORDE DELA IN ALLT I INPUTS FÖR ATT KUNNA PRESENTERA ALLT MER STRUKTURERAT )-
+
+def function_for_the_sentence_analysis():
+    filename = Dictionaries.current_file
+
+    with open(filename, 'r') as f:
+        text = f.read() #tekniskt sett läser hela filen till en lång string, men det behöver vi inte oroa oss om
+
+    sentences = re.split(r'[.!?]', text)
+    sentences = [s.strip() for s in sentences if s.strip()]
+
+    sentence_lengths = []
+    sentence_word_amounts = {}
+
+    for s in sentences:
+        sentence_lengths.append(len(s))  # lägga till varje längd av varje mening i listan
+
+        if len(s.split()) in sentence_word_amounts:
+            sentence_word_amounts[len(s.split())] += 1
+        else:
+            sentence_word_amounts[len(s.split())] = 1
+
+    total_length = sum(sentence_lengths) # summan av alla, så total mängd bokstäver i alla meningar
+    number_of_sentences = len(sentence_lengths)  # mängdne meningar
+    Dictionaries.avg_words_per_sentence = total_length / number_of_sentences  # avg word per sentence, på input 4
+
+
+    longest = max(sentences, key=lambda s: len(s)) # hitta meningen med längst längd ('len' som the key)
+    Dictionaries.longest_sentence_text = longest
+    Dictionaries.longest_sentence_length = len(longest)
+
+    shortest = min(sentences, key=lambda s: len(s)) # hitta kortast meningen, samma key som ovan
+    Dictionaries.shortest_sentence_text = shortest
+    Dictionaries.shortest_sentence_length = len(shortest)
+
+    sorted_by_count = sorted(sentence_word_amounts.items(), key=lambda x: x[1], reverse=True)
+
+    Dictionaries.top_five_sentence_lengths = sorted_by_count[:5]
+
+    for words, count in Dictionaries.top_five_sentence_lengths:
+        print(f'{words} words : {count} sentences')
+
+def sentence__analysis(): # när input är 4
+    function_for_the_sentence_analysis()
+    print()
+    print(f'Total sentences: {Dictionaries.count_sentences}.')
+    print(f'Average words per sentence: {Dictionaries.avg_words_per_sentence}.')
+    print(f'Shortest sentence: {Dictionaries.shortest_sentence_length} words.')
+    print(f'Longest sentence: {Dictionaries.longest_sentence_length} words.')
+    print()
+    print(f'Shortest sentence text: {Dictionaries.shortest_sentence_text}')
+    print(f'Longest sentence text: {Dictionaries.longest_sentence_text}')
