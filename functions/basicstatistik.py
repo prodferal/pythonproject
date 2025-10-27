@@ -144,3 +144,21 @@ def sentence__analysis(): # när input är 4
     print()
     print(f'Shortest sentence text: {Dictionaries.shortest_sentence_text}')
     print(f'Longest sentence text: {Dictionaries.longest_sentence_text}')
+
+
+def character_analysis(): #när input är 5
+    print('Character type distribution: ')
+    print(f'{' ':<2} Letters: {Dictionaries.tot_letters:,} ({100*(Dictionaries.tot_letters / Dictionaries.tot_characters) :.1f}%)')
+    print(f'{' ':<2} Digits: {Dictionaries.tot_digits:,} ({100*(Dictionaries.tot_digits / Dictionaries.tot_characters) :.1f}%)')
+    print(f'{' ':<2} Spaces: {Dictionaries.tot_spaces:,} ({100*(Dictionaries.tot_spaces / Dictionaries.tot_characters) :.1f}%)')
+    print(f'{' ':<2} Punctuation: {Dictionaries.tot_punctuation:,} ({100*(Dictionaries.tot_punctuation / Dictionaries.tot_characters) :.1f}%)')
+    print()
+    print('Most common letters:')
+
+    sorted_by_count = sorted(Dictionaries.all_letters_dict.items(), key=lambda x: x[1], reverse=True)
+    top_10 = sorted_by_count[:10]
+
+    index = 1
+    for i in top_10:
+        print(f'{index:>2}. "{i[0]}" - {i[1]:,} times ({100 * (i[1] / Dictionaries.tot_letters ):.1f}%) ')
+        index += 1

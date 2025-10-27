@@ -40,8 +40,10 @@ insights.
             enter_pressed = input('Press Enter to continue...')
             continue
         if user_inp == 5:
-            print(Dictionaries.letter_dict)
-                
+            basikstatistik.character_analysis()
+            print()
+            enter_pressed = input('Press Enter to continue...')
+            continue
         if user_inp == 6:
             return 'Yuh chief beef'
         if user_inp == 7:

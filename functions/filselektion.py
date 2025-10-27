@@ -44,31 +44,36 @@ def chosen_file(file_name):
             Dictionaries.chars_no_spaces += len(line.replace(' ', ''))
             in_paragraph = paragraphChecker(line, in_paragraph)  
             
-            file_letter_list = list(line) # list of all characters in line
-            for i in file_letter_list: #counts all the letters in the text file (letter_dict)
-                for letter, v in Dictionaries.letter_dict.items():
 
-                    if letter == i.lower():
-                        Dictionaries.letter_dict[i.lower()] += 1
-            
- 
-            for i in file_letter_list: # counting sentences
+            for i in line: # counting sentences
                 if i == '.' or i == '?' or i == '!':
                     Dictionaries.count_sentences += 1
             
             
 
-            
-            
+            ######### INPUT 5 KOD UNDER #########
+            for i in line:
+                Dictionaries.tot_characters += 1
+                    
+                if i == ' ':
+                    Dictionaries.tot_spaces += 1
+                elif i.isdigit():
+                    Dictionaries.tot_digits += 1
+                elif i == '.':
+                    Dictionaries.tot_punctuation += 1
+                else:
+                    Dictionaries.tot_letters += 1
+                    
+                    if i in Dictionaries.all_letters_dict:
+                        Dictionaries.all_letters_dict[i] += 1
+                    else:
+                        Dictionaries.all_letters_dict[i] = 1
+            ######### INPUT 5 KOD OVAN #########
+
         
 
 
-        #for char in string.punctuation:
-            #text = file.replace(char, '')
-                
-
         print(f'Analysis complete! Processed {Dictionaries.count_lines} lines.')
-        #print(Dictionaries.letter_dict)
 
 
 def handling_input(txt_files):
