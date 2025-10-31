@@ -1,14 +1,16 @@
-# Använderens input/output
-
 import importlib
 import menu as menu
-import functions.matplot as matplot
+import matplot as matplot
 import fileselection as fileselection
 import basicstatistics as basicstatistics
-import functions.exportstatistics as exportstatistics
+import exportstatistics as exportstatistics
 importlib.reload(fileselection) 
+importlib.reload(menu) 
 importlib.reload(basicstatistics) 
 importlib.reload(exportstatistics) 
+importlib.reload(exportstatistics) 
+importlib.reload(matplot) 
+
 
 def main():
     print('''
@@ -33,7 +35,7 @@ insights.
             data = fileselection.file_selection_menu()
             continue
         
-        if user_inp == 2:
+        if user_inp == 2: #basic statistics, MATPLOT KLAR
             if data is None:
                 print('Load a file first')
             else:
@@ -45,7 +47,7 @@ insights.
                 matplot.basic_statistics_plot(data)
             continue
             
-        if user_inp == 3:
+        if user_inp == 3: #word frequency, MATPLOT KLAR
             if data is None:
                 print('Load a file first')
             else:
@@ -57,24 +59,30 @@ insights.
                 matplot.word_analysis_plot(data)
             continue
             
-        if user_inp == 4:
+        if user_inp == 4: # Sentence analysis
             if data is None:
                 print('Load a file first')
             else:
                 basicstatistics.sentence_analysis(data)
             print()
-            input('Press Enter to continue...')
+            
+            mat_user = int(input('Would you like a matplot of this data? (1 for yes, 0 for no): '))
+            if mat_user == 1:
+                matplot.sentence_analysis_plot(data)
             continue
             
-        if user_inp == 5:
+        if user_inp == 5: # Character analysis MATPLOT KLAR
             if data is None:
                 print('Load a file first')
             else:
                 basicstatistics.character_analysis(data)
             print()
-            input('Press Enter to continue...')
-            continue
-            
+
+            mat_user = int(input('Would you like a matplot of this data? (1 for yes, 0 for no): '))
+            if mat_user == 1:
+                matplot.character_analysis_plot(data)
+            continue 
+
         if user_inp == 6:
             if data is None:
                 print('Load a file first')
