@@ -8,17 +8,27 @@ def replacePunctuation(line):
     return line
 
 def processLine(line, data):
-    line = replacePunctuation(line) # Replace punctuation with space
+    # Räknar ord och uppdaterar mängden av dem
+    
+    line = replacePunctuation(line) # Byter skiljetäcken med mellanrum
     words = line.split()
     wd = data['word_data']
     wdf = wd['common_words_dict']
     unique_words = wd['unique_word_set']
 
     for word in words:
+        n = len(word)
+        word_hist = wd['word_hist']
+        if n in word_hist:
+            word_hist[n] += 1
+        else:
+            word_hist[n] = 1
         wdf[word] = wdf.get(word, 0) + 1
         unique_words.add(word) 
             
 def paragraphChecker(line, in_paragraph, data):
+    # Paragraf räknare, kollar ifall man är i en paragraf
+    
     if line.strip() != '':
         if not in_paragraph:
             data['count_paragraph'] += 1
@@ -28,25 +38,29 @@ def paragraphChecker(line, in_paragraph, data):
 
     return in_paragraph
 
-def sentenceChecker(line, data): # longest, shortest sentence
+def sentenceChecker(line, data): # längst, kortast mening + längd hist
     sd = data['sentence_data']
     tokens = line.strip().split()
     
     for i in tokens:
-        while i and i[-1] in "\"')]}”’":   # strip certain characters
+        while i and i[-1] in "\"')]}”’":   # ta bort efterföljande karaktärer
             i = i[:-1]
+            
         if i == '' or i is None:
-            continue   # after stripping i is empty
+            continue   # ifall i är tom - skippa
             
         end_sent = False
-        if i[-1] in ".!?":     # is the sentence over
+        if i[-1] in ".!?":     # är detta ord slutet av meningen?
             end_sent = True
             sd['count_sentences'] += 1
-            
+
+        # lägg till ord i buffert
         if i != '' or i is not None:
             sd['cur_sen'].append(i)
             
         if end_sent is True:
+            # vi är i slutet av meningen
+            
             n = len(sd['cur_sen'])
             hist = sd['length_hist']
             if n in hist:
@@ -63,6 +77,7 @@ def sentenceChecker(line, data): # longest, shortest sentence
                     sd['shortest_sentence'] = sentence_text
                     sd['shortest_len'] = n
 
+            # resetta buffert
             sd['cur_sen'] = []
 
 def characterFunc(line, data):
@@ -74,7 +89,7 @@ def characterFunc(line, data):
             cd['tot_spaces'] += 1
         elif i.isdigit():
             cd['tot_digits'] += 1
-        elif i == '.':
+        elif i in '~@#$%^&°()_-+=<>?/,.;:!{}[]|':
             cd['tot_punctuation'] += 1
         else:
             cd['tot_letters'] += 1
@@ -102,7 +117,8 @@ def chosen_file(file_name):
             'longest_word': '',
             'shortest_word': '',
             'words_appearing_once': 0,
-            'avg_word_len': 0
+            'avg_word_len': 0,
+            'word_hist': {},
         },
 
         'sentence_data': {
@@ -112,7 +128,7 @@ def chosen_file(file_name):
             'shortest_sentence': '',
             'longest_len': 0,
             'shortest_len': 0,
-            'cur_sen': [],
+            'cur_sen': [], # buffert för mening
             'length_hist': {}
         },
 
@@ -161,6 +177,7 @@ def handling_input(txt_files):
                     raise ValueError(f'Number out of range.')
 
             else:
+                # antingen med eller utan .txt
                 if user_file_selection.lower().endswith('.txt'):
                     path_way = user_file_selection 
                 else: 
@@ -184,7 +201,7 @@ def handling_input(txt_files):
             continue
 
 def file_selection_menu():
-    # Meny för filselektion
+    # Meny för filselektion, tillgängliga textfiler
 
     path = 'txtfiles'
 

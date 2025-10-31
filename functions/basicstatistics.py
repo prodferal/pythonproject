@@ -1,5 +1,4 @@
 # Printa ut statistik för vald textfil
-import re
 
 def basic_statistics(data): # när input är 2
     totWords = data['word_count']
@@ -99,7 +98,7 @@ def sentence_analysis(data): # när input är 4
     totWords = data['word_count']
     totSent = sd['count_sentences']
     print()
-    print(f'Total sentences: {sd['count_sentences']}')
+    print(f'Total sentences: {sd['count_sentences']:,}')
     print(f'Average words per sentence: {round(totWords / totSent, 1)}')
     print(f'Shortest sentence: {sd['shortest_len']} words')
     print(f'Longest sentence: {sd['longest_len']} words')
